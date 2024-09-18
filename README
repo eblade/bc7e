@@ -53,6 +53,12 @@ If determinism across Intel/AMD CPU's is important in your usage case, you'll wa
 
 In the .ispc source code, we've prefixed all scatter/gathers with "#pragma ignore warning(perf)", as they just cloud the compiler's output and aren't performance critical.
 
+If you're anly interested in the CLI tool, You can, given you installed the OpenMP development package (libomp-devel on Fedora), go ahead and run:
+
+make all
+
+this will build the executable bc7enc and all its dependencies. Move the executable to somewhere in the $PATH and you'll be good to go.
+
 -- API
 
 The C-style API is modeled after ispc_texcomp's and is very simple. Note that
