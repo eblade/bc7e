@@ -2,4 +2,6 @@
 bc7e_*.h
 *.a
 bc7enc
-
+build
+install
+*.tar.gz

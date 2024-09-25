@@ -13,3 +13,6 @@ libbc7decomp.a: bc7e.obj liblodepng.a
 
 clean:
 	rm *.obj bc7e_*.h *.a bc7enc
+
+package:
+	./build.sh

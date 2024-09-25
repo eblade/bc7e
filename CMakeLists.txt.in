@@ -1,0 +1,32 @@
+cmake_minimum_required(VERSION 3.22)
+cmake_policy(SET CMP0111 NEW)
+
+set(namespace bc7e)
+
+# Normally this should be handled via generator expressions as for the install
+# targets but the IMPORTED_* properties do not support generator expressions
+# yet.
+if(MSVC)
+  set(ext ".lib")
+  set(dll_ext ".lib")
+  set(imported_shared_lib_property "IMPORTED_IMPLIB")
+  set(prefix "")
+else()
+  set(ext ".a")
+  set(dll_ext ".so")
+  set(imported_shared_lib_property "IMPORTED_LOCATION")
+  set(prefix "lib")
+endif()
+
+add_library(${namespace}::bc7e STATIC IMPORTED GLOBAL)
+set_target_properties(
+    ${namespace}::bc7e
+    PROPERTIES
+      IMPORTED_LOCATION_DEBUG
+      ${CMAKE_CURRENT_LIST_DIR}/lib/libbc7e.${ext}
+      IMPORTED_LOCATION_RELEASE
+      ${CMAKE_CURRENT_LIST_DIR}/lib/libbc7e.${ext}
+      IMPORTED_LOCATION_RELWITHDEBUGINFO
+      ${CMAKE_CURRENT_LIST_DIR}/lib/libbc7e.${ext}
+      INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_LIST_DIR}/include
+      MAP_IMPORTED_CONFIG_MINSIZEREL Release)
